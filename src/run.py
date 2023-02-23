@@ -7,6 +7,7 @@ from src.dataClass import keyboards as kb
 from src.bot import bot
 from src.filters import IsAdmin
 import emoji
+from src.db import db
 
 class Bot:
     """
@@ -27,6 +28,20 @@ class Bot:
         self.bot.infinity_polling()
         
     def handlers(self):
+        
+        @self.bot.message_handler(commands=['start'])    
+        def start(message):
+            self.send_message(
+                message.chat.id, 
+                'Hey f"<strong>{message.chat.first_name}</strong>"'
+                )
+
+            db.users.insert_one(
+                {'chat.id': message.chat.id},
+                {'$set': message.json},
+                upsert=True
+                )
+            
         @self.bot.message_handler(is_admin=True)
         def admin_of_group(message):
             self.send_message(message.chat.id, '<strong> You are admin of this chat! </strong>')
@@ -40,7 +55,7 @@ class Bot:
                 message.text,
                 reply_markup=keyboards.main
                 )
-    
+        
     def send_message(self, chat_id, text, reply_markup=None, emojize=True):
         if emojize:
             text = emoji.emojize(text)
