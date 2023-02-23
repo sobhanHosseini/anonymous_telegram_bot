@@ -3,11 +3,15 @@
 Telegram bot to randomly connect two strangers to talk!
 
 ## How to Run
-First add `src` to `PYTHONPATH`
+1. First set your telegram bot token as enviroment variable `ANONYMOUS_BOT_TOKEN`
+```
+export ANONYMOUS_BOT_TOKEN=<your_telegram_bot_token>
+```
+2. First add `src` to `PYTHONPATH`
 ```
 export PYTHONPATH=${PWD}
 ```
-Then run:
+3. Then Run:
 ```
-python src/bot.py
+python src/run.py
 ```
