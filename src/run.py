@@ -33,13 +33,12 @@ class Bot:
         def start(message):
             self.send_message(
                 message.chat.id, 
-                'Hey f"<strong>{message.chat.first_name}</strong>"'
+                f'Hey "<strong>{message.chat.first_name}</strong>"'
                 )
 
             db.users.insert_one(
                 {'chat.id': message.chat.id},
                 {'$set': message.json},
-                upsert=True
                 )
             
         @self.bot.message_handler(is_admin=True)
