@@ -43,7 +43,7 @@ class Bot:
     
     def send_message(self, chat_id, text, reply_markup=None, emojize=True):
         if emojize:
-            text = emoji.emojize(text, use_aliases=True)
+            text = emoji.emojize(text)
         
         self.bot.send_message(chat_id, text, reply_markup=reply_markup)
 		
