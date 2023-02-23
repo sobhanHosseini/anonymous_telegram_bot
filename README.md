@@ -1,6 +1,6 @@
 # Template for Telegram Bot
 
-Template to create telegram bot in python
+Telegram bot to randomly connect two strangers to talk!
 
 ## How to Run
 First add `src` to `PYTHONPATH`

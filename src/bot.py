@@ -9,7 +9,7 @@ from src.utils.io import write_json
 
 class Bot:
     """
-    Template for telegram bot.
+    Telegram bot to randomly connect two strangers to talk!
     """
     def __init__(self) -> None:
         self.bot = telebot.TeleBot(os.environ['ANONYMOUS_BOT_TOKEN'])
