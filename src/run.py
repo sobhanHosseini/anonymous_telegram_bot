@@ -64,8 +64,8 @@ class Bot:
             self.send_message_update_state(
                 chat_id=message.chat.id,
                 text=':busts_in_silhouette: Connecting you to a random stranger...',
-                reply_markup=self.keyboards.exit,
-                state=self.states.random_connect
+                state=self.states.random_connect,
+                reply_markup=self.keyboards.exit
                 )
             
             other_user = self.find_user(
@@ -90,8 +90,8 @@ class Bot:
             self.send_message_update_state(
                 chat_id=message.chat.id,
                 text=self.keys.exit,
-                reply_markup=self.keyboards.main,
-                state=self.states.main
+                state=self.states.main,
+                reply_markup=self.keyboards.main
                 )
             
             # get connected to user
@@ -106,8 +106,8 @@ class Bot:
             self.send_message_update_state(
                 chat_id=other_chat_id,
                 text=self.keys.exit,
-                reply_markup=self.keyboards.main,
-                state=self.states.main
+                state=self.states.main,
+                reply_markup=self.keyboards.main
                 )
             
             # remove connected users
@@ -171,7 +171,7 @@ class Bot:
                 {'$set': {'connected_to': connected_to}}
             )
     
-    def send_message_update_state(self, chat_id, text, reply_markup, state):
+    def send_message_update_state(self, chat_id, text, state,reply_markup=None):
         """
         send message and change state of user
         """
