@@ -1,4 +1,4 @@
-# Template for Telegram Bot
+# Anonumous Telegram Bot
 
 Telegram bot to randomly connect two strangers to talk!
 
