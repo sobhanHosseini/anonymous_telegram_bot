@@ -61,7 +61,7 @@ class Bot:
                 ':busts_in_silhouette: Connecting you to a random stranger...',
                 reply_markup=self.keyboards.exit
                 )
-            self.update_state(message.chat.id, self.states.idle)
+            self.update_state(message.chat.id, self.states.random_connect)
              
         @self.bot.message_handler(is_admin=True)
         def admin_of_group(message):
