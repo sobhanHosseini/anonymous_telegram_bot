@@ -35,9 +35,9 @@ class Bot:
                 message.chat.id, 
                 f'Hey "<strong>{message.chat.first_name}</strong>"'
                 )
-
+            print(message.json)
             db.users.insert_one(
-                {'chat.id': message.chat.id},
+                #{'chat.id': message.chat.id},
                 {message.json},
                 )
             
