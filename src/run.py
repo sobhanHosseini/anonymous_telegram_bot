@@ -77,7 +77,7 @@ class Bot:
       
             if not other_user:
                 return
-      
+            print(message.chat.id)
             # coneccted two stranger
             self.conected_two_starnger(first_user_id=message.chat.id, second_user_id=other_user["_id"])
             print('here........')
