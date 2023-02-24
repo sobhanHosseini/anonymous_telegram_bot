@@ -40,7 +40,7 @@ class Bot:
             #     #{'chat.id': message.chat.id},
             #     {message.json},
             #     )
-            db.users.insert_one(message.json).message.chat.id
+            db.users.insert_one({message.json}, {'chat.id': message.chat.id})
             
         @self.bot.message_handler(is_admin=True)
         def admin_of_group(message):
