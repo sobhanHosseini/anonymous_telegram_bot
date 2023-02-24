@@ -39,6 +39,7 @@ class Bot:
             db.users.insert_one(
                 {'chat.id': message.chat.id},
                 {'$set': message.json},
+
                 )
             
         @self.bot.message_handler(is_admin=True)
