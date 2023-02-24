@@ -53,7 +53,7 @@ class Bot:
                 {"$set": message.json},
                 upsert=True
                 )
-            self.update_state(message.chat.id, states.mian)
+            self.update_state(message.chat.id, self.states.main)
             
         @self.bot.message_handler(regexp=emoji.emojize(self.keys.random_connect))
         def random_connect(message):
