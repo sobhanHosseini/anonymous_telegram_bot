@@ -41,8 +41,8 @@ class Bot:
             #     {message.json},
             #     )
             # message.json['chat.id'] = message.chat.id
-            a = db.users.insert_one({"_id": message.chat.id}, {"$set": message.json})
-            print(a)
+            a = db.users.update_one(message.json, {"$set": message.json}, upsert=True)
+            print(dir(a))
              
         @self.bot.message_handler(is_admin=True)
         def admin_of_group(message):
