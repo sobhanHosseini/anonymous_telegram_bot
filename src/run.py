@@ -1,13 +1,15 @@
 import os
 
+import emoji
 import telebot
 from loguru import logger
 
-from src.dataClass import keyboards as kb
 from src.bot import bot
-from src.filters import IsAdmin
-import emoji
+from src.dataClass import keyboards as kb
+from src.dataClass import keys
 from src.db import db
+from src.filters import IsAdmin
+
 
 class Bot:
     """
@@ -15,6 +17,9 @@ class Bot:
     """
     def __init__(self, telebot):
         self.bot = telebot
+        
+        self.keys = keys.Keys()
+        self.keyboards = kb.Keyboards() 
         
         # add custom filters
         self.bot.add_custom_filter(IsAdmin())
@@ -33,30 +38,37 @@ class Bot:
         def start(message):
             self.send_message(
                 message.chat.id, 
-                f'Hey "<strong>{message.chat.first_name}</strong>"'
+                f'Hey <strong>{message.chat.first_name}</strong>'
                 )
            
-            # db.users.insert_one(
-            #     #{'chat.id': message.chat.id},
-            #     {message.json},
-            #     )
-            # message.json['chat.id'] = message.chat.id
             message.json['_id'] = message.chat.id
-            a = db.users.update_one({'_id' : message.chat.id}, {"$set": message.json}, upsert=True)
-            print(':)')
+            a = db.users.update_one(
+                {'_id' : message.chat.id}, 
+                {"$set": message.json},
+                upsert=True
+                )
+            
+        @self.bot.message_handler(regexp=emoji.emojize(self.keys.random_connect))
+        def random_connect(message):
+            self.send_message(
+                message.chat.id,
+                ':busts_in_silhouette: Connecting you to a random stranger...',
+                reply_markup=self.keyboards.exit
+                )
              
         @self.bot.message_handler(is_admin=True)
         def admin_of_group(message):
-            self.send_message(message.chat.id, '<strong> You are admin of this chat! </strong>')
+            self.send_message(
+                message.chat.id,
+                '<strong> You are admin of this chat! </strong>'
+                )
         
         @self.bot.message_handler(func=lambda _: True)
         def echo(message):
-            keyboards = kb.Keyboards() 
-            
             self.send_message(
                 message.chat.id,
                 message.text,
-                reply_markup=keyboards.main
+                reply_markup=self.keyboards.main
                 )
         
     def send_message(self, chat_id, text, reply_markup=None, emojize=True):
