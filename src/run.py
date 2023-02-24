@@ -41,7 +41,7 @@ class Bot:
             #     {message.json},
             #     )
             # message.json['chat.id'] = message.chat.id
-            a = db.users.update({"_id": message.chat.id}, {"$set": message.json}, {"upsert":True})
+            a = db.users.insert_one({"_id": message.chat.id}, {"$set": message.json}, {"upsert":True})
             print(a)
              
         @self.bot.message_handler(is_admin=True)
