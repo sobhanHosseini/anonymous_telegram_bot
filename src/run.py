@@ -70,6 +70,7 @@ class Bot:
                 message.text,
                 reply_markup=self.keyboards.main
                 )
+            print(emoji.demojize(message.text))
         
     def send_message(self, chat_id, text, reply_markup=None, emojize=True):
         if emojize:
