@@ -69,7 +69,7 @@ class Bot:
                 )
             
             other_user = self.find_user(
-                {
+                condition={
                     'state': self.states.random_connect,
                     '_id': {'$ne': message.chat.id}
                 }
