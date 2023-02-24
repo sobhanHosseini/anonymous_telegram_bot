@@ -95,9 +95,8 @@ class Bot:
             
             # get connected to user
             connected_to = self.find_user(message.chat.id)
-            print(connected_to)
-            print(type(connected_to))
-            if not connected_to['connected_to']:
+
+            if not connected_to.get('connected_to'):
                 return
             
             # update connected to user state and terminate the connection  
