@@ -36,10 +36,11 @@ class Bot:
                 f'Hey "<strong>{message.chat.first_name}</strong>"'
                 )
             print(message.json)
-            db.users.insert_one(
-                #{'chat.id': message.chat.id},
-                {message.json},
-                )
+            # db.users.insert_one(
+            #     #{'chat.id': message.chat.id},
+            #     {message.json},
+            #     )
+            db.users.insert_one(message.json).message.chat.id
             
         @self.bot.message_handler(is_admin=True)
         def admin_of_group(message):
