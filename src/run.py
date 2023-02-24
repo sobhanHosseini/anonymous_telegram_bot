@@ -74,10 +74,10 @@ class Bot:
                     '_id': {'$ne': message.chat.id}
                 }
             )
-            
+            print(other_user)
             if not other_user:
                 return
-            
+            print('after....')
             # coneccted two stranger
             self.conected_two_starnger(first_user_id=message.chat.id, second_user_id=other_user["_id"])
         
