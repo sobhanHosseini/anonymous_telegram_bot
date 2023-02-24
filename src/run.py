@@ -77,10 +77,9 @@ class Bot:
       
             if not other_user:
                 return
-            print(message.chat.id)
+
             # coneccted two stranger
             self.conected_two_starnger(first_user_id=message.chat.id, second_user_id=other_user["_id"])
-            print('here........')
     
         @self.bot.message_handler(regexp=emoji.emojize(self.keys.exit))
         def exit(message):
@@ -138,12 +137,10 @@ class Bot:
                 message.text
             )
     
-    def conected_two_starnger(first_user_id, second_user_id):
+    def conected_two_starnger(self, first_user_id, second_user_id):
         """
         connected two stranger.
         """
-        print('in conected two stranger.....')
-        return
         # update fiest user state
         self.send_message_update_state(
             chat_id=first_user_id,
