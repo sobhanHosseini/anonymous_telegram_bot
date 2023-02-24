@@ -65,7 +65,7 @@ class Bot:
         def exit(message):
             self.send_message(
                 message.chat.id,
-                keys.exit,
+                self.keys.exit,
                 reply_markup=self.keyboards.main
                 )
             self.update_state(message.chat.id, self.states.main)
