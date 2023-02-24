@@ -44,7 +44,8 @@ class Bot:
             """
             self.send_message(
                 message.chat.id, 
-                f'Hey <strong>{message.chat.first_name}</strong>'
+                f'Hey <strong>{message.chat.first_name}</strong>',
+                reply_markup=self.keyboards.main,
                 )
            
             message.json['_id'] = message.chat.id
