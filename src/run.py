@@ -50,11 +50,9 @@ class Bot:
                 {"$set": message.json},
                 upsert=True
                 )
-            self.update_state(message.chat.id, states.idle)
+            self.update_state(message.chat.id, states.mian)
             
-        @self.bot.message_handler(
-            regexp=emoji.emojize(self.keys.random_connect)
-            )
+        @self.bot.message_handler(regexp=emoji.emojize(self.keys.random_connect))
         def random_connect(message):
             self.send_message(
                 message.chat.id,
@@ -62,6 +60,15 @@ class Bot:
                 reply_markup=self.keyboards.exit
                 )
             self.update_state(message.chat.id, self.states.random_connect)
+        
+        @self.bot.message_handler(regexp=emoji.emojize(self.keys.exit))
+        def exit(message):
+            self.send_message(
+                message.chat.id,
+                keys.exit,
+                reply_markup=self.keyboards.main
+                )
+            self.update_state(message.chat.id, self.states.main)
              
         @self.bot.message_handler(is_admin=True)
         def admin_of_group(message):
