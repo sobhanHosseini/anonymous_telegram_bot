@@ -6,10 +6,9 @@ from loguru import logger
 
 from src.bot import bot
 from src.dataClass import keyboards as kb
-from src.dataClass import keys
+from src.dataClass import keys, states
 from src.db import db
 from src.filters import IsAdmin
-from src.dataClass import states
 
 
 class Bot:
